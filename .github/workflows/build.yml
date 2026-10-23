@@ -1,0 +1,27 @@
+
+name: Build AcrilicNotepad
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build DLL
+        shell: cmd
+        run: cl /nologo /LD /EHsc /std:c++17 AcrilicNotepad.cpp user32.lib dwmapi.lib comctl32.lib uxtheme.lib shlwapi.lib advapi32.lib /link /OUT:AcrilicNotepad.dll
+
+      - name: Build launcher
+        shell: cmd
+        run: cl /nologo /EHsc /std:c++17 AcrilicNotepadLauncher.cpp /link /OUT:AcrilicNotepadLauncher.exe
+
+      - name: Upload compiled files
+        uses: actions/upload-artifact@v4
+        with:
+          name: AcrilicNotepad-build
+          path: |
+            AcrilicNotepad.dll
+            AcrilicNotepadLauncher.exe
