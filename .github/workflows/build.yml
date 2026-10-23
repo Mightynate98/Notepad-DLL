@@ -17,11 +17,11 @@ jobs:
 
       - name: Build DLL
         shell: cmd
-        run: cl /nologo /EHsc /std:c++17 AcrilicNotepadLauncher.cpp user32.lib /link /OUT:AcrilicNotepadLauncher.exe
+        run: cl /nologo /LD /EHsc /std:c++17 AcrilicNotepad.cpp user32.lib gdi32.lib dwmapi.lib comctl32.lib uxtheme.lib shlwapi.lib advapi32.lib /link /OUT:AcrilicNotepad.dll
 
       - name: Build launcher
         shell: cmd
-        run: cl /nologo /EHsc /std:c++17 AcrilicNotepadLauncher.cpp /link /OUT:AcrilicNotepadLauncher.exe
+        run: cl /nologo /EHsc /std:c++17 AcrilicNotepadLauncher.cpp user32.lib /link /OUT:AcrilicNotepadLauncher.exe
 
       - name: Upload compiled files
         uses: actions/upload-artifact@v4
