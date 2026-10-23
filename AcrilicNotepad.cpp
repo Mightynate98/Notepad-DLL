@@ -215,7 +215,6 @@ void ConfigureNotepadWindow(HWND hwnd) {
         g_editWindow = edit;
         // This removes themed styling from this control where supported; it is not a custom
         // scrollbar renderer and is intentionally not presented as one.
-        SetWindowTheme(edit, L"", L"");
         InvalidateRect(edit, nullptr, TRUE);
     }
 }
